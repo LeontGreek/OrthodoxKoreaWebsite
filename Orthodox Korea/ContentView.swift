@@ -22,7 +22,7 @@ struct ContentView : View {
                     Image(systemName: "house.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.yellow)
                         .shadow(radius: 3)
                 }
                 
