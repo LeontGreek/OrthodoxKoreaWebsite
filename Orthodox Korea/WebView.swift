@@ -40,4 +40,8 @@ struct Webview : UIViewRepresentable {
     func reload(){
         webview?.reload()
     }
+    
+    func goHome(){
+        webview?.load(URLRequest(url: URL(string: "https://orthodoxkorea.org/")!))
+    }
   }
