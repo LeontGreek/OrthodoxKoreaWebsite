@@ -18,7 +18,9 @@ struct ContentView : View {
         VStack{
             HStack(spacing: 40) {
                 // Home
-                Button(action: { self.webview.goHome()}){
+                Button(action: { DispatchQueue.main.async {
+                    self.webview.goHome()
+                }}){
                     Image(systemName: "house.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -27,7 +29,9 @@ struct ContentView : View {
                 }
                 
                 // Back
-                Button(action: { self.webview.goBack() }) {
+                Button(action: { DispatchQueue.main.async {
+                    self.webview.goBack()
+                }}) {
                     Image(systemName: "chevron.left.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -36,7 +40,9 @@ struct ContentView : View {
                 }
 
                 // Refresh
-                Button(action: { self.webview.reload() }) {
+                Button(action: { DispatchQueue.main.async {
+                    self.webview.reload()
+                }}) {
                     Image(systemName: "arrow.clockwise.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
@@ -45,7 +51,9 @@ struct ContentView : View {
                 }
 
                 // Forward
-                Button(action: { self.webview.goForward() }) {
+                Button(action: { DispatchQueue.main.async {
+                    self.webview.goForward()
+                }}) {
                     Image(systemName: "chevron.right.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
