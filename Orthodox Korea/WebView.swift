@@ -21,6 +21,10 @@ struct Webview : UIViewRepresentable {
         self.request = req
     }
 
+    func clearCache(){
+        WKWebsiteDataStore.default().removeData(ofTypes: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache], modifiedSince: Date(timeIntervalSince1970: 0), completionHandler:{ })
+    }
+    
     func getCustomUserAgent() -> String {
         #if targetEnvironment(macCatalyst)
         // Mac (Catalyst)
@@ -47,6 +51,7 @@ struct Webview : UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) {
         webview?.allowsBackForwardNavigationGestures = true
         webview?.customUserAgent = getCustomUserAgent()
+        clearCache()
 
         if webview?.url == nil {
             webview?.load(request)
@@ -67,6 +72,7 @@ struct Webview : UIViewRepresentable {
     }
     
     func goHome(){
+        clearCache()
         webview?.load(URLRequest(url: URL(string: "https://orthodoxkorea.org/")!))
     }
   }
