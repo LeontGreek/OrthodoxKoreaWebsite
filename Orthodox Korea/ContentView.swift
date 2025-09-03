@@ -10,8 +10,7 @@ import WebKit
 
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
-
-    // Keep ONE controller alive for the whole view
+    
     @StateObject private var web = WebController(
         startURL: URL(string: "https://orthodoxkorea.org/")!,
         useEphemeralStore: false,   // set true if you never want persistent cache/cookies
@@ -20,7 +19,6 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            // The web content
             WebContainerView(webView: web.webView)
                 .ignoresSafeArea()
 
@@ -28,7 +26,7 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 HStack(spacing: 24) {
-                    // Home (clears cache + loads start URL)
+                    // Home
                     Button {
                         web.goHome(clearBefore: true)
                     } label: {
@@ -84,7 +82,6 @@ struct ContentView: View {
         .onChange(of: scenePhase) { newPhase in
             switch newPhase {
             case .background:
-                // Clear on app going to background
                 web.clearWebsiteData()
             default:
                 break
